@@ -71,8 +71,6 @@ set -e
 rm -rf $PRGNAM-$VERSION
 tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
 cd $PRGNAM-$VERSION
-# Skip broken test
-#  sed -i '/check_PROGRAMS += tests\/test-session-info/d' Makefile.am
 
   # Set proper paths
   sed -i 's|/etc/sysconfig/spice-vdagentd|/etc/conf.d/spice-vdagentd|
