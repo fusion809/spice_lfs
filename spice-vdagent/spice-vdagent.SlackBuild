@@ -92,9 +92,7 @@ make -j$(nproc)
 sudo make install DESTDIR=/
 
 # Install an init script and an X.org configuration file
-sudo install -m 0755 -D $CWD/files/rc.spice-vdagent \
-  /etc/rc.d/rc.spice-vdagent.new
-sudo install -m 0644 -D $CWD/files/06-spice-vdagent.conf \
+sudo install -m 0644 -D $CWD/06-spice-vdagent.conf \
   /usr/share/X11/xorg.conf.d/06-spice-vdagent.conf.new
 
 sudo mkdir -p /usr/doc/$PRGNAM-$VERSION
