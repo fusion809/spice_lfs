@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Slackware build script for spice
+# Originally a Slackware build script for spice
+# Brenton Horne maintains it as LFS build script
 
-# Copyright 2013-2025 Matteo Bernardini <ponce@slackbuilds.org>, Pisa, Italy
+# Originally maintained by 2013-2025 Matteo Bernardini <ponce@slackbuilds.org>, Pisa, Italy
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -43,22 +44,14 @@ if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
   exit 0
 fi
 
-TMP=${TMP:-/tmp/SBo}
-PKG=$TMP/package-$PRGNAM
-OUTPUT=${OUTPUT:-/tmp}
-
 if [ "$ARCH" = "i586" ]; then
   SLKCFLAGS="-O2 -march=i586 -mtune=i586"
-  LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-  LIBDIRSUFFIX=""
 elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2 -fPIC"
-  LIBDIRSUFFIX="64"
 else
   SLKCFLAGS="-O2"
-  LIBDIRSUFFIX=""
 fi
 
 DOCS="AUTHORS CHANGELOG.md COPYING README"
@@ -73,7 +66,11 @@ fi
 set -e 
 
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.bz2
+filename=$PRGNAM-$VERSION.tar.bz2
+if ! [[ -f $filename ]]; then
+	wget -c https://www.spice-space.org/download/releases/spice-server/$filename
+fi
+tar xvf $CWD/$filename
 cd $PRGNAM-$VERSION
 
 ./configure \

@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Slackware build script for spice-vdagent
+# Originally a Slackware build script for spice
+# Brenton Horne maintains it as LFS build script
 
-# Copyright 2012-2023 Matteo Bernardini <ponce@slackbuilds.org>, Pisa, Italy
+# Originally maintained by 2013-2025 Matteo Bernardini <ponce@slackbuilds.org>, Pisa, Italy
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -26,9 +27,6 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=spice-vdagent
 VERSION=${VERSION:-0.23.0}
-BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}
-PKGTYPE=${PKGTYPE:-tgz}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -46,22 +44,14 @@ if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
   exit 0
 fi
 
-TMP=${TMP:-/tmp/SBo}
-PKG=$TMP/package-$PRGNAM
-OUTPUT=${OUTPUT:-/tmp}
-
 if [ "$ARCH" = "i586" ]; then
   SLKCFLAGS="-O2 -march=i586 -mtune=i686"
-  LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-  LIBDIRSUFFIX=""
 elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2 -fPIC"
-  LIBDIRSUFFIX="64"
 else
   SLKCFLAGS="-O2"
-  LIBDIRSUFFIX=""
 fi
 
 DOCS="COPYING CHANGELOG.md README.md"
@@ -69,7 +59,11 @@ DOCS="COPYING CHANGELOG.md README.md"
 set -e
 
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.?z*
+filename="$PRGNAM-$VERSION.tar.bz2"
+if ! [[ -f $filename ]]; then
+	wget -c https://www.spice-space.org/download/releases/$filename
+fi
+tar xvf $CWD/$filename
 cd $PRGNAM-$VERSION
 
   # Set proper paths

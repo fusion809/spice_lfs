@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Slackware build script for spice-protocol
-# Copyright 2013-2025 Matteo Bernardini <ponce@slackbuilds.org>, Pisa, Italy
+# Originally a Slackware build script for spice
+# Brenton Horne maintains it as LFS build script
+
+# Originally maintained by 2013-2025 Matteo Bernardini <ponce@slackbuilds.org>, Pisa, Italy
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -25,10 +27,6 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=spice-protocol
 VERSION=${VERSION:-0.14.5}
-BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}
-PKGTYPE=${PKGTYPE:-tgz}
-
 ARCH=noarch
 
 if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
@@ -36,15 +34,14 @@ if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
   exit 0
 fi
 
-TMP=${TMP:-/tmp/SBo}
-PKG=$TMP/package-$PRGNAM
-OUTPUT=${OUTPUT:-/tmp}
-
 DOCS="COPYING *.md"
 
 set -e
 
 rm -rf $PRGNAM-$VERSION
+if ! [[ -f $PRGNAM-$VERSION.tar.xz ]]; then
+	wget -c https://www.spice-space.org/download/releases/$PRGNAM-$VERSION.tar.xz
+fi
 tar xvf $CWD/$PRGNAM-$VERSION.tar.xz
 cd $PRGNAM-$VERSION
 
