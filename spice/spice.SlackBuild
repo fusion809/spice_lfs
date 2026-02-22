@@ -79,7 +79,7 @@ cd $PRGNAM-$VERSION
 ./configure \
   --prefix=/usr \
   --libdir=/usr/lib \
-  --docdir=/usr/doc/$PRGNAM-$VERSION \
+  --docdir=/usr/share/doc/$PRGNAM-$VERSION \
   --disable-static \
   --enable-client \
   --disable-celt051 \
@@ -88,8 +88,8 @@ cd $PRGNAM-$VERSION
 make
 sudo make install DESTDIR=/
 
-sudo mkdir -p /usr/doc/$PRGNAM-$VERSION
-sudo cp -a $DOCS /usr/doc/$PRGNAM-$VERSION
+sudo mkdir -p /usr/share/doc/$PRGNAM-$VERSION
+sudo cp -a $DOCS /usr/share/doc/$PRGNAM-$VERSION
 
 sudo rm -f /usr/lib*/*.la
 

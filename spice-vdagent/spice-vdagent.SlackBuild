@@ -86,7 +86,7 @@ export CFLAGS="$SLKCFLAGS -Wno-error"
   --localstatedir=/var \
   --mandir=/usr/man \
   --with-init-script=systemd \
-  --docdir=/usr/doc/$PRGNAM-$VERSION
+  --docdir=/usr/share/doc/$PRGNAM-$VERSION
 
 make -j$(nproc)
 sudo make install DESTDIR=/
@@ -95,6 +95,6 @@ sudo make install DESTDIR=/
 sudo install -m 0644 -D $CWD/06-spice-vdagent.conf \
   /usr/share/X11/xorg.conf.d/06-spice-vdagent.conf.new
 
-sudo mkdir -p /usr/doc/$PRGNAM-$VERSION
-sudo cp -a $DOCS /usr/doc/$PRGNAM-$VERSION
+sudo mkdir -p /usr/share/doc/$PRGNAM-$VERSION
+sudo cp -a $DOCS /usr/share/doc/$PRGNAM-$VERSION
 

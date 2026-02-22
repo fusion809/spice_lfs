@@ -83,10 +83,10 @@ ninja
 sudo ninja install
 
 cd ..
-sudo mkdir -p /usr/doc/$PRGNAM-$VERSION
+sudo mkdir -p /usr/share/doc/$PRGNAM-$VERSION
 for i in $DOCS
 do
-	sudo cp -a $i /usr/doc/$PRGNAM-$VERSION
+	sudo cp -a $i /usr/share/doc/$PRGNAM-$VERSION
 done
 
 sudo rm -f /usr/lib*/*.la

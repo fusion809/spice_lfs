@@ -67,6 +67,6 @@ meson setup \
   DESTDIR=/ sudo $NINJA install || exit 1
 cd ..
 
-sudo mkdir -p /usr/doc/$PRGNAM-$VERSION
-sudo cp -a $DOCS /usr/doc/$PRGNAM-$VERSION
+sudo mkdir -p /usr/share/doc/$PRGNAM-$VERSION
+sudo cp -a $DOCS /usr/share/doc/$PRGNAM-$VERSION
 
